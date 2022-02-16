@@ -2,17 +2,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started (For Developers):
 
-1.) Download Node.js from their website (The project is compiling w/ version v17.4.0)
+1.) Download Node.js from their website (The project is current compiling w/ version v17.4.0)
 
 2.) Clone the repository (https://github.com/CS222SP22/course-project-lk.git) to your local machine.
 
 3.) Using any command line (Powershell, CMD, etc.) CD to the "nextjs-project" folder
 
-4.) Run the command: "npm-i"
+4.) Run the command: "npm install" (this command installs the necessary project dependencies)
 
-5.) Run the command: "ng serve"
-
-6.) Finally, you should be able to run the command: "npm run dev" (example below) to locally host the current webpage
+5.) Finally, you should be able to run the command: "npm run dev" (example below) to locally host the current webpage
 
 First, run the development server:
 
