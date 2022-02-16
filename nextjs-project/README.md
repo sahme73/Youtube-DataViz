@@ -8,11 +8,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 3.) Using any command line (Powershell, CMD, etc.) CD to the "nextjs-project" folder
 
-4.) Run the command: "npm -i"
+4.) Run the command: "npm install" (this command will install all necessary dependencies for the project)
 
-5.) Run the command: "ng serve"
-
-6.) Finally, you should be able to run the command: "npm run dev" (example below) to locally host the current webpage
+5.) Finally, you should be able to run the command: "npm run dev" (example below) to locally host the current webpage
 
 First, run the development server:
 
