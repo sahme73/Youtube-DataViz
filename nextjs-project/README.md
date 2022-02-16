@@ -8,7 +8,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 3.) Using any command line (Powershell, CMD, etc.) CD to the "nextjs-project" folder
 
-4.) Run the command: "npm-i"
+4.) Run the command: "npm -i"
 
 5.) Run the command: "ng serve"
 
