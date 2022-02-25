@@ -4,15 +4,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 1.) Download Node.js from their website (The project is compiling w/ version v17.4.0)
 
-2.) Download the release (v0.01) from this GitHub repository and extract the files to your chosen workspace directory (DO NOT just clone the repo because github cannot currently track certain .node files -- this will be fixed soon)
+2.) Clone the repository (https://github.com/CS222SP22/course-project-lk.git) to your local machine.
 
 3.) Using any command line (Powershell, CMD, etc.) CD to the "nextjs-project" folder
 
-4.) Type and run "npm install"
+4.) Run the command: "npm install" (this command will install all necessary dependencies for the project)
 
-5.) Type and run "npm install d3" (This will be added to the package.json soon)
-
-6.) Finally, you should be able to run the command: "npm run dev" (example below) to locally host the current webpage
+5.) Finally, you should be able to run the command: "npm run dev" (example below) to locally host the current webpage
 
 First, run the development server:
 
