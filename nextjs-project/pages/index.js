@@ -11,16 +11,16 @@ function HomePage() {
 
   return (
     <Fragment>
-      <h1>The Home Page</h1>
+      <h1>The Home Page - YouTube Analysis</h1>
       <ul>
         <li>
           <Link href='/page_1'>
-            Page 1
+            Page 1 - D3 Bar Graph Test
           </Link>
         </li>
         <li>
           <Link href='/page_2'>
-            Page 2
+            Page 2 - Views vs Likes (Aug 2020)
           </Link>
         </li>
       </ul>
