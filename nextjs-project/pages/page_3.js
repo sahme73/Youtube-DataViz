@@ -3,65 +3,63 @@ import { Fragment } from 'react';
 import * as d3 from "d3";
 import React, {useState, useRef, useEffect} from 'react';
 
-function PageThree({ array_2d }) {
-  const [data] = useState(array_2d);
+function PageThree({ final_data }) {
+  const [data] = useState(final_data);
   const svgRef = useRef();
 
   useEffect(() => {
-    //container
-    var w = 600;
-    var h = 500;
-
-    const svg = d3.select(svgRef.current)
-      .attr('width', w + 100 + 100)
-      .attr('height',h + 100 + 100)
-      .attr("transform","translate(" + 100 + "," + 100 + ")")
-      .style('overflow', 'visible')
-      .style('margin-bottom', '100px');
-
-    //scaling
-    const xScale = d3.scaleLinear()
-      .domain([0, 100000000])
-      .range([0, w]);
-    const yScale = d3.scaleLinear()
-      .domain([0, 10000000])
-      .range([h, 0]);
-
-    //axis
     
-    svg.append('g')
-      .attr('transform', 'translate(0, ${w})')
-      .call(d3.axisBottom(xScale));
-      
-    svg.append('g')
-      .attr('transform', 'translate(0, ${h})')
-      .call(d3.axisLeft(yScale));
+   // set the dimensions and margins of the graph
+    var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    width = 450 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
 
-    //label
-      //do later
+    // append the svg object to the body of the page
+    var svg = d3.select(svgRef.current).append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
 
-    //data
-    svg.append('g')
-      .selectAll("dot")
-      .data(data)
-      .enter()
-      .append('circle')
-        .attr('cx', d => xScale(d[0]))
-        .attr('cy', d => yScale(d[1]))
-        .attr('r', 2);
+    // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
+    var layout = d3.layout.cloud()
+    .size([width, height])
+    .words(data.map(function(d) { return {text: d}; }))
+    .padding(10)
+    .fontSize(60)
+    .on("end", draw);
+    layout.start();
+
+    // This function takes the output of 'layout' above and draw the words
+    // Better not to touch it. To change parameters, play with the 'layout' variable above
+    function draw(words) {
+      svg
+      .append("g")
+        .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+        .selectAll("text")
+          .data(words)
+        .enter().append("text")
+          .style("font-size", function(d) { return d.size + "px"; })
+          .attr("text-anchor", "middle")
+          .attr("transform", function(d) {
+            return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+          })
+          .text(function(d) { return d.text; });
+      }
 
   }, [data]);
 
   return (
     <Fragment>
       <h1>
-        Page 2
+        Page 3
       </h1>
       <Link href='/'>
         Return home!
       </Link>
       <br></br>
-      <div className='PageTwo'>
+      <div className='PageThree'>
       <svg ref={svgRef} ></svg>
       </div>
       <br></br>
@@ -74,8 +72,10 @@ function PageThree({ array_2d }) {
 // Processes texts and performs data preparation to be passed into
 // Partially taken from https://observablehq.com/@d3/word-cloud
 function wordCloudProcessor(json_result) {
-  var JSON_data = JSON.parse(json_result);
-  let items = JSON_data["items"];
+  
+  // var JSON_data = JSON.parse(json_result);
+  let items = json_result["items"];
+  console.log(items)
   var full_text = "";
   for (let index = 0; index < items.length; index++) {
     full_text = full_text + items[index]["snippet"]["topLevelComment"]["snippet"]["textOriginal"] + " ";
@@ -97,7 +97,7 @@ export async function getServerSideProps() {
   const json_data = require('../resource/response.json');
   const final_data = wordCloudProcessor(json_data);
 
-  return {props:{final_data}
+  return {props:{final_data}}
 
 }
 
