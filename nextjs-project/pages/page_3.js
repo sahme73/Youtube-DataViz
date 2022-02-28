@@ -4,7 +4,6 @@ import * as d3 from "d3";
 import React, {useState, useRef, useEffect} from 'react';
 
 function PageThree({ array_2d }) {
-
   const [data] = useState(array_2d);
   const svgRef = useRef();
 
@@ -95,7 +94,10 @@ function wordCloudProcessor(json_result) {
 }
 
 export async function getServerSideProps() {
+  const json_data = require('../resource/response.json');
+  const final_data = wordCloudProcessor(json_data);
 
+  return {props:{final_data}
 
 }
 
