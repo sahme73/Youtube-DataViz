@@ -23,6 +23,12 @@ function HomePage() {
             Page 2 - Views vs Likes (Aug 2020)
           </Link>
         </li>
+
+        <li>
+          <Link href='/page_3'>
+            Page 3 - Word Cloud
+          </Link>
+        </li>
       </ul>
     </Fragment>
   );
