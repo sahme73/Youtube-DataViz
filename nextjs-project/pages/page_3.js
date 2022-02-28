@@ -12,8 +12,8 @@ function PageThree({ final_data }) {
     
    // set the dimensions and margins of the graph
     var margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 1000 - margin.left - margin.right,
-    height = 1000 - margin.top - margin.bottom;
+    width = 700 - margin.left - margin.right,
+    height = 700 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     var svg = d3.select(svgRef.current).append("svg")
@@ -37,7 +37,7 @@ function PageThree({ final_data }) {
     function draw(words) {
       svg
       .append("g")
-        .attr("transform", "translate(" + layout.size()[0] + "," + layout.size()[1] + ")")
+        .attr("transform", "translate(" + layout.size()[0]/2 + "," + layout.size()[1]/2 + ")")
         .selectAll("text")
           .data(words)
         .enter().append("text")
@@ -60,7 +60,7 @@ function PageThree({ final_data }) {
         Return home!
       </Link>
       <br></br>
-      <svg ref={svgRef}/>
+      <svg ref={svgRef} width="700" height = "700"/>
       <br></br>
     </Fragment>
   );
