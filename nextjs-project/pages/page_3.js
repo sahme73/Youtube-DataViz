@@ -13,8 +13,8 @@ function PageThree({ final_data }) {
     
    // set the dimensions and margins of the graph
     var margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 700 - margin.left - margin.right,
-    height = 700 - margin.top - margin.bottom;
+    width = 900 - margin.left - margin.right,
+    height = 900 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     var svg = d3.select(svgRef.current).append("svg")
@@ -27,9 +27,9 @@ function PageThree({ final_data }) {
     // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
     var layout = cloud()
     .size([width, height])
-    .words(data.map(function(d) { return {text: d, size:d.size}; }))
+    .words(data.map(function(d) { return {text: d.word, size:d.size}; }))
     .padding(5)
-    .fontSize(function(d) { return d.size; })
+    .fontSize(function(d) { return d.size *8; })
     .rotate(function() { return ~~(Math.random() * 2) * 90; })
     .on("end", draw);
     layout.start();
@@ -62,7 +62,7 @@ function PageThree({ final_data }) {
         Return home!
       </Link>
       <br></br>
-      <svg ref={svgRef} width="700" height = "700"/>
+      <svg ref={svgRef} width="900" height = "900"/>
       <br></br>
     </Fragment>
   );
