@@ -2,7 +2,7 @@
 // Partially taken from https://observablehq.com/@d3/word-cloud
 // Remove Emojis
 
-export function wordCloudProcessor(json_result) {
+function wordCloudProcessor(json_result) {
   let items = json_result["items"];
   var full_text = "";
   for (let index = 0; index < items.length; index++) {
@@ -17,7 +17,6 @@ export function wordCloudProcessor(json_result) {
   .map(w => w.toLowerCase())
   .map(w => w.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, ''))
   .filter(w => w && !stopwords.has(w))
-  console.log(typeof wordFreq(words))
   return structureData(wordFreq(words));
 }
 
@@ -43,3 +42,7 @@ function structureData(map) {
   }
   return final_list;
 }
+
+exports.wordCloudProcessor = wordCloudProcessor;
+exports.wordFreq = wordFreq;
+exports.structureData = structureData;
