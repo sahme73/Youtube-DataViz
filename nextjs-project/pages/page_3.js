@@ -62,7 +62,9 @@ function PageThree({ final_data }) {
         Return home!
       </Link>
       <br></br>
+      <div className='PageThree'>
       <svg ref={svgRef} width="900" height = "900"/>
+      </div>
       <br></br>
     </Fragment>
   );
