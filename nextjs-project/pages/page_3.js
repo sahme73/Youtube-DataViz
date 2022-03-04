@@ -4,6 +4,7 @@ import { wordCloudProcessor } from '../resource/tools'
 import * as d3 from "d3";
 import * as cloud from 'd3-cloud';
 import React, {useState, useRef, useEffect} from 'react';
+import styles from '../styles/DefaultPage.module.css';
 
 function PageThree({ final_data }) {
   const [data] = useState(final_data);
@@ -55,12 +56,14 @@ function PageThree({ final_data }) {
 
   return (
     <Fragment>
-      <h1>
-        Page 3
-      </h1>
-      <Link href='/'>
-        Return home!
-      </Link>
+      <h1 className={styles.title}>Page 3 : Word Cloud</h1>
+          <button className={styles.button}>
+            <span>
+              <Link href='/'>
+                Return home!
+              </Link>
+            </span>  
+          </button>
       <br></br>
       <div className='PageThree'>
       <svg ref={svgRef} width="900" height = "900"/>

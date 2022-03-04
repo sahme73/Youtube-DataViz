@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 import * as d3 from "d3";
 import React, {useState, useRef, useEffect} from 'react';
+import styles from '../styles/DefaultPage.module.css';
 
 function PageTwo({ array_2d }) {
 
@@ -9,7 +10,7 @@ function PageTwo({ array_2d }) {
   const svgRef = useRef();
 
   useEffect(() => {
-    //container
+    //container creation
     var w = 800;
     var h = 600;
     var spacing = 120;
@@ -17,13 +18,13 @@ function PageTwo({ array_2d }) {
     const svg = d3.select(svgRef.current)
       .attr('width', w)
       .attr('height', h)
-      .style("background", "grey")
+      .style("background", "#d9d9d9")
       .style('overflow', 'visible')
       .style('margin-top', '0px')
       .append('g')
         .attr('transform', 'translate(' + spacing/2 + ',' + spacing/2 + ')');
 
-    //scaling
+    //scaling both x and y to match dataset
     const xScale = d3.scaleLinear()
       .domain([d3.min(data, function(d) {
         return d[0];
@@ -37,7 +38,7 @@ function PageTwo({ array_2d }) {
       })])
       .range([h - spacing, 0]);
 
-    //axis
+    //axis adjusted to match scale
     const xAxis = d3.axisBottom(xScale);
     const yAxis = d3.axisLeft(yScale);
     svg.append('g')
@@ -46,10 +47,10 @@ function PageTwo({ array_2d }) {
     svg.append('g')
       .call(yAxis);
 
-    //label
+    //axis label creation
       //do later
 
-    //data
+    //dataset entered into graph as points
     svg.selectAll()
       .data(data)
       .enter()
@@ -63,12 +64,14 @@ function PageTwo({ array_2d }) {
 
   return (
     <Fragment>
-      <h1>
-        Page 2
-      </h1>
-      <Link href='/'>
-        Return home!
-      </Link>
+      <h1 className={styles.title}>Page 2 : Views vs Likes (August 2020)</h1>
+        <button className={styles.button}>
+            <span>
+              <Link href='/'>
+                Return home!
+              </Link>
+            </span>  
+          </button>
       <br></br>
       <div className='PageTwo'>
       <svg ref={svgRef}></svg>

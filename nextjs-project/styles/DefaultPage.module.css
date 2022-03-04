@@ -1,28 +1,3 @@
-/* This css module creates styles necessary for a modern homepage. */
-
-/* Forms a modern large title with an underline. */
-.title {
-  color: #333;
-  text-align: center;
-  font-size: xx-large;
-  font-size: 64px;
-  border-bottom: 1px solid rgb(0, 0, 0);
-  padding-bottom: 20px;
-}
-
-/* Any additional text is colored grey. */
-.text {
-  color: #777;
-}
-
-/* Ensures that the unordered list has no bullet points
-  or any unnecessary indentation. */
-.list {
-  list-style-type: none;
-  padding-left: 0;
-  text-align: center;
-}
-
 /* Base of the button container.
   - creates a modern style button with rounded edges
   - changes user cursor to a pointer when over button
@@ -33,14 +8,14 @@
   border: none;
   color: #FFFFFF;
   text-align: center;
-  font-size: 28px;
-  padding: 20px;
-  width: 500px;
+  font-size: 14px;
+  padding: 10px;
+  width: 150px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
 }
-
+  
 /* Ensures that the button remains inline. */
 .button span {
   cursor: pointer;
@@ -48,7 +23,7 @@
   position: relative;
   transition: 0.5s;
 }
-
+  
 /* The creation of the >> effect and pushes button text. */
 .button span:after {
   content: '\00bb';
@@ -58,16 +33,23 @@
   right: -20px;
   transition: 0.5s;
 }
-
+  
 /* When the user hovers over the button,
   the padding of the original button text changes. */
 .button:hover span {
   padding-right: 25px;
 }
-
+  
 /* When the user hovers over the button,
   the span:after portion (line 53) becomes visible. */
 .button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+/* Add a border line to the title. */
+.title {
+  color: #333;
+  border-bottom: 1px solid rgb(107, 107, 107);
+  padding-bottom: 15px;
 }
