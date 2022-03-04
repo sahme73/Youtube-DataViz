@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import * as d3 from "d3";
 import { Fragment } from 'react';
 import Link from 'next/link';
+import styles from '../styles/DefaultPage.module.css';
 
 class BarChart extends Component {
   componentDidMount() {
@@ -11,14 +12,15 @@ class BarChart extends Component {
   drawChart() {
     const data = [12, 5, 6, 6, 9, 10];
     
-    var w = 700;
+    var w = 415;
     var h = 300;
 
     const svg = d3.select("body")
     .append("svg")
     .attr("width", w)
     .attr("height", h)
-    .style("margin-left", 100);
+    .style("background", "#d9d9d9")
+    .style("margin-left", 0);
                   
     svg.selectAll("rect")
       .data(data)
@@ -43,11 +45,15 @@ class BarChart extends Component {
   render() {
     return (
       <Fragment>
-        <h1>Page 1</h1>
+        <h1 className={styles.title}>Page 1 : D3 Bar Graph Example</h1>
+          <button className={styles.button}>
+            <span>
+              <Link href='/'>
+                Return home!
+              </Link>
+            </span>  
+          </button>
         <div id={"#" + this.props.id}></div>
-        <Link href='/'>
-        Return home!
-        </Link>
       </Fragment>
       
     );
