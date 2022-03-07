@@ -43,6 +43,15 @@ function HomePage() {
             </span>  
           </button>
         </li>
+        <li>
+          <button className={styles.button}>
+            <span>
+              <Link href='/page_4'>
+                Bubble Chart
+              </Link>
+            </span>  
+          </button>
+        </li>
       </ul>
     </Fragment>
   );
