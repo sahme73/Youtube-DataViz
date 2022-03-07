@@ -1,3 +1,18 @@
+// Video Categories are extracted from YouTube API and processed to form a dictionary
+function processVideoCategories(categories) {
+  let temp = categories["items"];
+  let final_categories = {};
+
+  for (let index = 0; index < temp.length; index++) {
+    let curr_id = temp[index]["id"];
+    let curr_title = temp[index]["snippet"][title];
+    final_categories[curr_id] = curr_title;
+  }
+
+  return final_categories;
+}
+
+
 // Processes texts and performs data preparation to be passed into
 // Partially taken from https://observablehq.com/@d3/word-cloud
 // Remove Emojis
@@ -46,3 +61,4 @@ function structureData(map) {
 exports.wordCloudProcessor = wordCloudProcessor;
 exports.wordFreq = wordFreq;
 exports.structureData = structureData;
+exports.processVideoCategories = structureData;
