@@ -78,5 +78,8 @@ function structureData(map) {
 exports.wordCloudProcessor = wordCloudProcessor;
 exports.wordFreq = wordFreq;
 exports.structureData = structureData;
+<<<<<<< HEAD
 exports.processVideoCategories = processVideoCategories;
 exports.processVideos = processVideos;
+=======
+>>>>>>> main
