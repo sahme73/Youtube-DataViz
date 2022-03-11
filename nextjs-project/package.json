@@ -5,13 +5,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest"
   },
   "dependencies": {
     "csv-parser": "^3.0.0",
     "d3": "^7.3.0",
-    "dotenv": "^16.0.0",
     "googleapis": "^95.0.0",
+    "d3-cloud": "^1.2.5",
     "next": "^12.1.0",
     "papaparse": "^5.3.1",
     "react": "17.0.2",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "eslint": "8.8.0",
-    "eslint-config-next": "12.0.10"
+    "eslint-config-next": "12.0.10",
+    "jest": "^27.5.1"
   }
 }
