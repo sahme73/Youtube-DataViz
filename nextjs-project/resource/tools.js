@@ -3,6 +3,10 @@
 function processVideos(videos) {
   let temp = videos["items"];
   let final_videos = [];
+
+  if (temp == null) {
+    return final_videos;
+  }
   for (let index = 0; index < temp.length; index++) {
     let curr_obj = {};
     curr_obj["id"] = temp[index]["snippet"]["categoryId"];
@@ -20,9 +24,13 @@ function processVideoCategories(categories) {
   let temp = categories["items"];
   let final_categories = {};
 
+  if (temp == null) {
+    return final_categories;
+  }
+
   for (let index = 0; index < temp.length; index++) {
     let curr_id = temp[index]["id"];
-    let curr_title = temp[index]["snippet"][title];
+    let curr_title = temp[index]["snippet"]["title"];
     final_categories[curr_id] = curr_title;
   }
 
@@ -78,8 +86,5 @@ function structureData(map) {
 exports.wordCloudProcessor = wordCloudProcessor;
 exports.wordFreq = wordFreq;
 exports.structureData = structureData;
-<<<<<<< HEAD
 exports.processVideoCategories = processVideoCategories;
 exports.processVideos = processVideos;
-=======
->>>>>>> main

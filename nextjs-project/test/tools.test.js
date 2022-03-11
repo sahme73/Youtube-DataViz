@@ -50,4 +50,72 @@ describe("structureData", () => {
   });
 })
 
+describe("processVideoCategories", () => {
+  test('Empty Object test', () => {
+    var categories = {};
+    var result = {}
+    expect(tools.processVideoCategories(categories)).toEqual(result);
+  });
 
+  test('Simple test', () => {
+      var categories = {
+        "items": [
+          {"id": "0", "snippet": {"title": "First Title"}}
+        ]
+      };
+      var result = {"0": "First Title"}
+      expect(tools.processVideoCategories(categories)).toEqual(result);
+  });
+
+  test('Elaborate Test', () => {
+    var categories = {
+      "items": [
+        {"id": "1", "snippet": {"title": "First Title"}}, 
+        {"id": "2", "snippet": {"title": "Second Title"}},
+        {"id": "3", "snippet": {"title": "Third Title"}}
+      ]
+    };
+    var result = {"1": "First Title", "2": "Second Title", "3": "Third Title"}
+    expect(tools.processVideoCategories(categories)).toEqual(result);
+  });
+})
+
+describe("processVideos", () => {
+  test('Empty Object test', () => {
+    var videos = {};
+    var result = [];
+    expect(tools.processVideos(videos)).toEqual(result);
+  });
+
+  test('Simple test', () => {
+      var videos = {
+        "items": [
+          {"snippet": {"categoryId": "3", "title": "Video 1"}, 
+           "statistics": {"viewCount": 1000, "likeCount": 100}
+          }
+        ]
+      };
+      var result = [{"id": "3", "title": "Video 1", "viewCount": 1000, "likeCount": 100}]
+      expect(tools.processVideos(videos)).toEqual(result);
+  });
+
+  test('Elaborate Test', () => {
+    var videos = {
+      "items": [
+        {"snippet": {"categoryId": "3", "title": "Video 1"}, 
+         "statistics": {"viewCount": 1000, "likeCount": 100}
+        }, 
+        {"snippet": {"categoryId": "0", "title": "Video 2"}, 
+         "statistics": {"viewCount": 356, "likeCount": 200}
+        }, 
+        {"snippet": {"categoryId": "2", "title": "Video 3"}, 
+         "statistics": {"viewCount": 20000, "likeCount": 4556}
+        }
+      ]
+    };
+    var result = [{"id": "3", "title": "Video 1", "viewCount": 1000, "likeCount": 100},
+                  {"id": "0", "title": "Video 2", "viewCount": 356, "likeCount": 200},
+                  {"id": "2", "title": "Video 3", "viewCount": 20000, "likeCount": 4556}]
+    expect(tools.processVideos(videos)).toEqual(result);
+  });
+})
