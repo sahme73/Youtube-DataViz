@@ -2,16 +2,12 @@
 import React, {Component} from 'react'
 import { Fragment } from 'react';
 import { render } from 'react-dom';
+import { searchTerm, RetrieveCommentThreads } from './more_api'
 
 require('dotenv').config();
 const { google } = require('googleapis');
 
 function TestYouTubePage() {
-    // try {
-    //   d3.selectAll("svg").remove();
-    // } catch (error) {
-    //   console.log(error);
-    // }
 
     return (
         <Fragment>

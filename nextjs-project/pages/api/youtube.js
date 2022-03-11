@@ -16,32 +16,3 @@ export default async (req, res) => { // simple fetcher that fetches all popular 
 
 /* -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- *
  * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- */
-const { google } = require('googleapis');
-
-/**
- * @summary A fetcher gives most popular videos with the given keyword in US region
- * 
- * @notice Also a practice for fetching with googleapis module
- * 
- * @param {*} keyword 
- */
-export async function SearchKeyword(keyword, res) {
-    google.youtube('v3').search.list({
-        key: process.env.YOUTUBE_TOKEN,
-        part: 'snipet',
-        q: keyword,
-        chart: 'mostPopular',
-        regionCode: 'US',
-        maxResults: '50',
-    }).then((response) => {
-        // const { data } = response;
-        // data.items.array.forEach(element => {
-        //     // do something
-        //     // record each itmes
-        //     console.log(`Title: ${item.snippet,title}\nDescription:${item.snippet.description}\n`);
-        // });
-        json = await response.json()
-    }).catch((err) => console.log(err));
-
-    return res.status(200).json(items);
- }
