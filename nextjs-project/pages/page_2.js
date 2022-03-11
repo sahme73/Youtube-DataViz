@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Fragment } from 'react';
-import * as d3 from "d3";
+import * as d3 from 'd3';
 import React, {useState, useRef, useEffect} from 'react';
 import styles from '../styles/DefaultPage.module.css';
 
@@ -11,18 +11,17 @@ function PageTwo({ array_2d }) {
 
   useEffect(() => {
     //container creation
-    var w = 800;
-    var h = 600;
-    var spacing = 120;
+    var w = 1200;
+    var h = 900;
+    var spacing = 60;
 
-    const svg = d3.select(svgRef.current)
+    var svg = d3.select(svgRef.current);
+
+    svg
       .attr('width', w)
       .attr('height', h)
       .style("background", "#d9d9d9")
-      .style('overflow', 'visible')
-      .style('margin-top', '0px')
-      .append('g')
-        .attr('transform', 'translate(' + spacing/2 + ',' + spacing/2 + ')');
+      .style('cursor', 'crosshair');
 
     //scaling both x and y to match dataset
     const xScale = d3.scaleLinear()
@@ -31,34 +30,90 @@ function PageTwo({ array_2d }) {
       }) - 1, d3.max(data, function(d) {
         return d[0];
       }) + 1])
-      .range([0, w - spacing]);
+      .range([0, w - 200]);
+
     const yScale = d3.scaleLinear()
       .domain([0, d3.max(data, function(d) {
         return d[1];
       })])
-      .range([h - spacing, 0]);
+      .range([h - spacing, 60]);
 
     //axis adjusted to match scale
-    const xAxis = d3.axisBottom(xScale);
-    const yAxis = d3.axisLeft(yScale);
-    svg.append('g')
-      .attr('transform', 'translate(0,' + (h - spacing) + ')')
+    var xAxis = d3.axisBottom(xScale);
+    var yAxis = d3.axisLeft(yScale);
+
+    var gX = svg.append('g')
+      .attr('transform', 'translate(120,' + (h - spacing) + ')')
       .call(xAxis);
-    svg.append('g')
+    
+    var gY = svg.append('g')
+      .attr('transform', 'translate(' + 120 + ', 0)')
       .call(yAxis);
 
     //axis label creation
-      //do later
+    svg.append('text')
+      .attr('x', (w - spacing)/2)
+      .attr('y', h - spacing)
+      .attr('dy', '2.25em')
+      .style('text-anchor', 'middle')
+      .text('Views');
+
+      svg.append('text')
+      .attr('x', -(h - spacing)/2)
+      .attr('y', 0)
+      .attr('dy', '3.25em')
+      .attr('transform', 'rotate(-90)')
+      .style('text-anchor', 'middle')
+      .text('Likes');
 
     //dataset entered into graph as points
-    svg.selectAll()
+
+    const points = svg.append('g');
+
+    var radius = 1.5
+
+    points
+      .selectAll('circle')
       .data(data)
-      .enter()
-      .append('circle')
+      .join('circle')
         .attr('cx', d => xScale(d[0]))
         .attr('cy', d => yScale(d[1]))
-        .attr('r', 2)
-        .style('fill', 'red');
+        .attr('r', radius)
+        //.style('stroke', 'black')
+        .style('fill', 'red')
+        .attr('transform', 'translate(120, 0)');
+
+    //zoom controller
+    const zoomBehaivor = d3.zoom()
+      .scaleExtent([0.5, 400])
+      .translateExtent([[0, 0], [w, h]])
+      .extent([[0, 0], [w, h]])
+      .on('zoom', (e) => {
+        points
+          .attr('transform', e.transform);
+
+        points
+          .selectAll('circle')
+          //.attr('cx', function(d) {return e.transform.rescaleX(xScale)(d[0])})
+          //.attr('cy', function(d) {return e.transform.rescaleY(yScale)(d[1])})
+          .attr('r', function(d) {
+          
+          if (e.transform.k > 100) {
+            return 0.02;
+          } else {
+            return Math.pow(radius, (-1 * (e.transform.k / 10)));
+          }
+
+          });
+          console.log("Scale factor: " + e.transform.k);
+          console.log("Radius of point: " + Math.pow(radius, (-1 * (e.transform.k / 10))));
+        
+        gX.call(xAxis.scale(e.transform.rescaleX(xScale)));
+        gY.call(yAxis.scale(e.transform.rescaleY(yScale)));
+      });
+
+    svg
+      .call(zoomBehaivor);
 
   }, [data]);
 
@@ -73,13 +128,16 @@ function PageTwo({ array_2d }) {
             </span>  
           </button>
       <br></br>
-      <div className='PageTwo'>
-      <svg ref={svgRef}></svg>
+      <div>
+        <svg ref={svgRef}>
+
+        </svg>
       </div>
+      <br></br>
       <br></br>
     </Fragment>
   );
-  
+  // className='PageTwo'
 }
 
 export async function getServerSideProps() {
