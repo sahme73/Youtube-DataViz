@@ -3,11 +3,14 @@ import { Fragment } from 'react';
 import * as d3 from 'd3';
 import React, {useState, useRef, useEffect} from 'react';
 import styles from '../styles/DefaultPage.module.css';
+import { useRouter } from 'next/router';
 
-function PageTwo({ array_2d }) {
+function PageTwo({ array_5d }) {
 
-  const [data] = useState(array_2d);
+  const [data] = useState(array_5d);
   const svgRef = useRef();
+
+  const router = useRouter();
 
   useEffect(() => {
     //container creation
@@ -32,11 +35,15 @@ function PageTwo({ array_2d }) {
       }) + 1])
       .range([0, w - 200]);
 
+    xScale.nice();
+
     const yScale = d3.scaleLinear()
       .domain([0, d3.max(data, function(d) {
         return d[1];
       })])
       .range([h - spacing, 60]);
+
+    yScale.nice();
 
     //axis adjusted to match scale
     var xAxis = d3.axisBottom(xScale);
@@ -66,8 +73,8 @@ function PageTwo({ array_2d }) {
       .style('text-anchor', 'middle')
       .text('Likes');
 
-    //dataset entered into graph as points
 
+    //dataset entered into graph as points
     const points = svg.append('g');
 
     var radius = 1.5
@@ -79,13 +86,13 @@ function PageTwo({ array_2d }) {
         .attr('cx', d => xScale(d[0]))
         .attr('cy', d => yScale(d[1]))
         .attr('r', radius)
-        //.style('stroke', 'black')
         .style('fill', 'red')
+        .style('opacity', '0.65')
         .attr('transform', 'translate(120, 0)');
 
     //zoom controller
     const zoomBehaivor = d3.zoom()
-      .scaleExtent([0.5, 400])
+      .scaleExtent([0.5, 6400])
       .translateExtent([[0, 0], [w, h]])
       .extent([[0, 0], [w, h]])
       .on('zoom', (e) => {
@@ -94,11 +101,23 @@ function PageTwo({ array_2d }) {
 
         points
           .selectAll('circle')
-          //.attr('cx', function(d) {return e.transform.rescaleX(xScale)(d[0])})
-          //.attr('cy', function(d) {return e.transform.rescaleY(yScale)(d[1])})
           .attr('r', function(d) {
+
+          if (e.transform.k < 1) {
+            return 1.5;
+          }
+
+          if (e.transform.k > 6000) {
+            return 0.01;
+          }
+
+          if (e.transform.k > 600) {
+            return 0.004;
+          }
           
-          if (e.transform.k > 100) {
+          if (e.transform.k > 200) {
+            return 0.008;
+          } else if (e.transform.k > 100) {
             return 0.02;
           } else {
             return Math.pow(radius, (-1 * (e.transform.k / 10)));
@@ -115,29 +134,81 @@ function PageTwo({ array_2d }) {
     svg
       .call(zoomBehaivor);
 
+    //hover controller
+    var div = d3.select('body')
+      .append('div')
+      .style('position', 'absolute');
+
+    points.selectAll('circle')
+      .on("mouseover", function(event, d) {
+        
+        var link_string = "https://youtu.be/" + d[2]; //the link of the point's video
+        var title_string = d[3]; //the title of the point's video
+
+        //console.log("OVER")
+        if (d[3] === '') console.log("video deleted");
+
+        div.html('<a href="' + link_string + '" target="_blank">' + title_string + '</a>')
+          .style('left', (event.pageX + 8) + 'px')  
+          .style('top', (event.pageY - 32) + 'px')
+          .transition().duration(100)
+          .style('opacity', '.9');
+
+      })
+      .on("mousemove", function(event, d) {
+        
+        var link_string = "https://youtu.be/" + d[2]; //the link of the point's video
+        var title_string = d[3]; //the title of the point's video
+
+        if (d[3] === '') console.log("video deleted");
+
+        div.html('<a href="' + link_string + '" target="_blank">' + title_string + '</a>')
+          .style('left', (event.pageX + 8) + 'px')  
+          .style('top', (event.pageY - 32) + 'px')
+          .transition().duration(100)
+          .style('opacity', '.9');
+
+      })
+      .on('click', function(event, d) {
+
+        console.log('clicking');
+
+        var link_string = "https://youtu.be/" + d[2]; //the link of the point's video
+
+        router.push(link_string);
+
+      })
+      .on('mouseout', function(event, d) {
+        div.transition()
+          .duration(1280)
+          .style('opacity', '0');
+
+        setTimeout(() => {
+          div.html("");
+        }, 1280);
+
+      });
+
   }, [data]);
 
   return (
     <Fragment>
       <h1 className={styles.title}>Page 2 : Views vs Likes (August 2020)</h1>
-        <button className={styles.button}>
+        <Link href='/'>
+          <button className={styles.button}>
             <span>
-              <Link href='/'>
-                Return home!
-              </Link>
+              Return Home!
             </span>  
           </button>
+        </Link>
       <br></br>
       <div>
-        <svg ref={svgRef}>
-
-        </svg>
+        <svg ref={svgRef}/>
       </div>
       <br></br>
       <br></br>
     </Fragment>
   );
-  // className='PageTwo'
 }
 
 export async function getServerSideProps() {
@@ -155,13 +226,13 @@ export async function getServerSideProps() {
   //temporary fix for data link problem:
   const data = require('../resource/aug_2020.json');
 
-  const array_2d = [[]]; // array of (x,y) where x is views and y is likes
+  const array_5d = [[[[]]]]; // array of (x,y) where x is views and y is likes
 
   for (let i = 0; i < data.length; i++) {
-    array_2d[i] = [data[i]["view_count"],data[i]["likes"]];
+    array_5d[i] = [data[i]["view_count"],data[i]["likes"],data[i]["video_id"],data[i]["title"]];
   }
 
-  return {props: {array_2d},} //returns the 2d array to the client's page
+  return {props: {array_5d},} //returns the 2d array to the client's page
 }
 
 export default PageTwo;
