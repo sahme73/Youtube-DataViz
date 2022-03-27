@@ -21,7 +21,7 @@ async function SearchVideoKeyword(v_CategoryId = '0', regionCode = 'US', part = 
         regionCode: regionCode,
         maxResults: maxResults,
         videoCategoryId: v_CategoryId,
-    }).then((response) => {
+    }).then(async (response) => {
         json = await response.json()
     }).catch((err) => console.log(err));
 
@@ -46,7 +46,7 @@ async function RetrieveCommentThreads (part = "id,snippet,replies", order = 'rel
         order: order,
         videoId: videoId,
         searchTerm: searchTerm,
-    }).then((response) => {
+    }).then(async (response) => {
         json = await response.json()
     }).catch((err) => console.log(err));
 
