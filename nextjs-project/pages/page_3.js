@@ -16,7 +16,6 @@ function PageThree() {
   const [dataJson, setJsonData] = useState({})
 
   function onChangeVideoID(event) {
-    console.log(event.target.value)
     setVideoID(event.target.value);
   }
 
@@ -31,7 +30,14 @@ function PageThree() {
     try {
       let response = await fetch('https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&videoId='+ videoId +'&key='+api_key);
       let json = await response.json();
-      console.log(json)
+      let items = json.items 
+      let nextPageToken = json.nextPageToken
+      while (nextPageToken) {
+        response = await fetch('https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&pageToken='+nextPageToken+'&videoId='+videoId+'&key='+api_key)
+        json = await response.json()
+        items = items.concat(json.items)
+        nextPageToken = json.nextPageToken
+      }
       final_data = wordCloudProcessor(json);
       setJsonData(final_data);
       setInitialSubmit(true);
