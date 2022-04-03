@@ -75,12 +75,11 @@ function PageThree({ final_data }) {
 }
 
 export async function getServerSideProps() {
-
-  var key = "AIzaSyDn8IwZVoh_WyXNVa6iyjyo-8zbwbb4Dus" // use your own API key
+  var key = process.env.YOUTUBE_KEY // use your own API key
+  var final_data = {}
   let response = await fetch('https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&videoId=p0Qu37bIzRI'+'&key='+key)
   let json = await response.json()
-  console.log(json)
-  const final_data = wordCloudProcessor(json);
+  final_data = wordCloudProcessor(json);
 
   // const json_data = require('../resource/response.json');
   // const final_data = wordCloudProcessor(json_data);
