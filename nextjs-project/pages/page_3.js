@@ -28,17 +28,22 @@ function PageThree() {
     const api_key = process.env.YOUTUBE_KEY; // use your own API key
     var final_data = {};
     try {
+      var i = 0;
       let response = await fetch('https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&videoId='+ videoId +'&key='+api_key);
       let json = await response.json();
       let items = json.items 
       let nextPageToken = json.nextPageToken
-      while (nextPageToken) {
+      // Take the first 250 comments
+      // With i >= 5, wordcloud processing takes too long
+      while (nextPageToken && i < 5) {
         response = await fetch('https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&pageToken='+nextPageToken+'&videoId='+videoId+'&key='+api_key)
         json = await response.json()
         items = items.concat(json.items)
         nextPageToken = json.nextPageToken
+        i+=1;
       }
-      final_data = wordCloudProcessor(json);
+      console.log(items)
+      final_data = wordCloudProcessor(items);
       setJsonData(final_data);
       setInitialSubmit(true);
       setSubmit(!submit);
@@ -67,7 +72,7 @@ function PageThree() {
       .size([width, height])
       .words(dataJson.map(function(d) { return {text: d.word, size:d.size}; }))
       .padding(5)
-      .fontSize(function(d) { return d.size *8; })
+      .fontSize(function(d) { return d.size *5; })
       .rotate(function() { return ~~(Math.random() * 2) * 90; })
       .on("end", draw);
       layout.start();
@@ -104,11 +109,13 @@ function PageThree() {
           </button>
       <br></br>
       <div className='PageThree'>
+        <div>
           <label>
-            Video ID:
+            Video ID: 
             <input type="text" name="videoid" value={videoId} onChange={onChangeVideoID}/>
           </label>
           <input type="submit" value="Submit" onClick={onSubmitVideoID}/>
+        </div>
         <svg ref={svgRef} width="900" height = "900"/>
       </div>
       <br></br>
