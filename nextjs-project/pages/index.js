@@ -16,42 +16,47 @@ function HomePage() {
     <Fragment>
       <h1 className={styles.title}>YouTube Analysis</h1>
       <ul className={styles.list}>
-        <li>
+        
+      <li>
+        <Link href='/page_1'>
           <button className={styles.button}>
             <span>
-              <Link href='/page_1'>
-                D3 Bar Graph Example
-              </Link>
+              D3 Bar Graph Example
             </span>  
           </button>
-        </li>
-        <li>
+        </Link>
+      </li>
+
+      <li>
+        <Link href='/page_2'>
           <button className={styles.button}>
             <span>
-              <Link href='/page_2'>
-                Views vs Likes (August 2020)
-              </Link>
+              Views vs Likes (August 2020)
             </span>  
           </button>
-        </li>
-        <li>
+        </Link>
+      </li>
+
+      <li>
+        <Link href='/page_3'>
           <button className={styles.button}>
             <span>
-              <Link href='/page_3'>
-                Word Cloud
-              </Link>
+              Word Cloud
             </span>  
           </button>
-        </li>
-        <li>
+        </Link>
+      </li>
+
+      <li>
+        <Link href='/page_4'>
           <button className={styles.button}>
             <span>
-              <Link href='/page_4'>
-                Bubble Chart
-              </Link>
+              Bubble Chart
             </span>  
           </button>
-        </li>
+        </Link>
+      </li>
+        
       </ul>
     </Fragment>
   );

@@ -1,28 +1,30 @@
 import Link from 'next/link';
 import { Fragment } from 'react';
-import * as d3 from "d3";
+import * as d3 from 'd3';
 import React, {useState, useRef, useEffect} from 'react';
 import styles from '../styles/DefaultPage.module.css';
+import { useRouter } from 'next/router';
 
-function PageTwo({ array_2d }) {
+function PageTwo({ array_5d }) {
 
-  const [data] = useState(array_2d);
+  const [data] = useState(array_5d);
   const svgRef = useRef();
+
+  const router = useRouter();
 
   useEffect(() => {
     //container creation
-    var w = 800;
-    var h = 600;
-    var spacing = 120;
+    var w = 1200;
+    var h = 900;
+    var spacing = 60;
 
-    const svg = d3.select(svgRef.current)
+    var svg = d3.select(svgRef.current);
+
+    svg
       .attr('width', w)
       .attr('height', h)
       .style("background", "#d9d9d9")
-      .style('overflow', 'visible')
-      .style('margin-top', '0px')
-      .append('g')
-        .attr('transform', 'translate(' + spacing/2 + ',' + spacing/2 + ')');
+      .style('cursor', 'crosshair');
 
     //scaling both x and y to match dataset
     const xScale = d3.scaleLinear()
@@ -31,55 +33,182 @@ function PageTwo({ array_2d }) {
       }) - 1, d3.max(data, function(d) {
         return d[0];
       }) + 1])
-      .range([0, w - spacing]);
+      .range([0, w - 200]);
+
+    xScale.nice();
+
     const yScale = d3.scaleLinear()
       .domain([0, d3.max(data, function(d) {
         return d[1];
       })])
-      .range([h - spacing, 0]);
+      .range([h - spacing, 60]);
+
+    yScale.nice();
 
     //axis adjusted to match scale
-    const xAxis = d3.axisBottom(xScale);
-    const yAxis = d3.axisLeft(yScale);
-    svg.append('g')
-      .attr('transform', 'translate(0,' + (h - spacing) + ')')
+    var xAxis = d3.axisBottom(xScale);
+    var yAxis = d3.axisLeft(yScale);
+
+    var gX = svg.append('g')
+      .attr('transform', 'translate(120,' + (h - spacing) + ')')
       .call(xAxis);
-    svg.append('g')
+    
+    var gY = svg.append('g')
+      .attr('transform', 'translate(' + 120 + ', 0)')
       .call(yAxis);
 
     //axis label creation
-      //do later
+    svg.append('text')
+      .attr('x', (w - spacing)/2)
+      .attr('y', h - spacing)
+      .attr('dy', '2.25em')
+      .style('text-anchor', 'middle')
+      .text('Views');
+
+      svg.append('text')
+      .attr('x', -(h - spacing)/2)
+      .attr('y', 0)
+      .attr('dy', '3.25em')
+      .attr('transform', 'rotate(-90)')
+      .style('text-anchor', 'middle')
+      .text('Likes');
+
 
     //dataset entered into graph as points
-    svg.selectAll()
+    const points = svg.append('g');
+
+    var radius = 1.5
+
+    points
+      .selectAll('circle')
       .data(data)
-      .enter()
-      .append('circle')
+      .join('circle')
         .attr('cx', d => xScale(d[0]))
         .attr('cy', d => yScale(d[1]))
-        .attr('r', 2)
-        .style('fill', 'red');
+        .attr('r', radius)
+        .style('fill', 'red')
+        .style('opacity', '0.65')
+        .attr('transform', 'translate(120, 0)');
+
+    //zoom controller
+    const zoomBehaivor = d3.zoom()
+      .scaleExtent([0.5, 6400])
+      .translateExtent([[0, 0], [w, h]])
+      .extent([[0, 0], [w, h]])
+      .on('zoom', (e) => {
+        points
+          .attr('transform', e.transform);
+
+        points
+          .selectAll('circle')
+          .attr('r', function(d) {
+
+          if (e.transform.k < 1) {
+            return 1.5;
+          }
+
+          if (e.transform.k > 6000) {
+            return 0.01;
+          }
+
+          if (e.transform.k > 600) {
+            return 0.004;
+          }
+          
+          if (e.transform.k > 200) {
+            return 0.008;
+          } else if (e.transform.k > 100) {
+            return 0.02;
+          } else {
+            return Math.pow(radius, (-1 * (e.transform.k / 10)));
+          }
+
+          });
+          console.log("Scale factor: " + e.transform.k);
+          console.log("Radius of point: " + Math.pow(radius, (-1 * (e.transform.k / 10))));
+        
+        gX.call(xAxis.scale(e.transform.rescaleX(xScale)));
+        gY.call(yAxis.scale(e.transform.rescaleY(yScale)));
+      });
+
+    svg
+      .call(zoomBehaivor);
+
+    //hover controller
+    var div = d3.select('body')
+      .append('div')
+      .style('position', 'absolute');
+
+    points.selectAll('circle')
+      .on("mouseover", function(event, d) {
+        
+        var link_string = "https://youtu.be/" + d[2]; //the link of the point's video
+        var title_string = d[3]; //the title of the point's video
+
+        //console.log("OVER")
+        if (d[3] === '') console.log("video deleted");
+
+        div.html('<a href="' + link_string + '" target="_blank">' + title_string + '</a>')
+          .style('left', (event.pageX + 8) + 'px')  
+          .style('top', (event.pageY - 32) + 'px')
+          .transition().duration(100)
+          .style('opacity', '.9');
+
+      })
+      .on("mousemove", function(event, d) {
+        
+        var link_string = "https://youtu.be/" + d[2]; //the link of the point's video
+        var title_string = d[3]; //the title of the point's video
+
+        if (d[3] === '') console.log("video deleted");
+
+        div.html('<a href="' + link_string + '" target="_blank">' + title_string + '</a>')
+          .style('left', (event.pageX + 8) + 'px')  
+          .style('top', (event.pageY - 32) + 'px')
+          .transition().duration(100)
+          .style('opacity', '.9');
+
+      })
+      .on('click', function(event, d) {
+
+        console.log('clicking');
+
+        var link_string = "https://youtu.be/" + d[2]; //the link of the point's video
+
+        router.push(link_string);
+
+      })
+      .on('mouseout', function(event, d) {
+        div.transition()
+          .duration(1280)
+          .style('opacity', '0');
+
+        setTimeout(() => {
+          div.html("");
+        }, 1280);
+
+      });
 
   }, [data]);
 
   return (
     <Fragment>
       <h1 className={styles.title}>Page 2 : Views vs Likes (August 2020)</h1>
-        <button className={styles.button}>
+        <Link href='/'>
+          <button className={styles.button}>
             <span>
-              <Link href='/'>
-                Return home!
-              </Link>
+              Return Home!
             </span>  
           </button>
+        </Link>
       <br></br>
-      <div className='PageTwo'>
-      <svg ref={svgRef}></svg>
+      <div>
+        <svg ref={svgRef}/>
       </div>
+      <br></br>
       <br></br>
     </Fragment>
   );
-  
 }
 
 export async function getServerSideProps() {
@@ -97,13 +226,13 @@ export async function getServerSideProps() {
   //temporary fix for data link problem:
   const data = require('../resource/aug_2020.json');
 
-  const array_2d = [[]]; // array of (x,y) where x is views and y is likes
+  const array_5d = [[[[]]]]; // array of (x,y) where x is views and y is likes
 
   for (let i = 0; i < data.length; i++) {
-    array_2d[i] = [data[i]["view_count"],data[i]["likes"]];
+    array_5d[i] = [data[i]["view_count"],data[i]["likes"],data[i]["video_id"],data[i]["title"]];
   }
 
-  return {props: {array_2d},} //returns the 2d array to the client's page
+  return {props: {array_5d},} //returns the 2d array to the client's page
 }
 
 export default PageTwo;
