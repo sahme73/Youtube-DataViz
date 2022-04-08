@@ -5,9 +5,9 @@ import React, {useState, useRef, useEffect} from 'react';
 import styles from '../styles/DefaultPage.module.css';
 import { useRouter } from 'next/router';
 
-function PageTwo({ array_5d }) {
+function PageTwo({ array_4d }) {
 
-  const [data] = useState(array_5d);
+  const [data] = useState(array_4d);
   const svgRef = useRef();
 
   const router = useRouter();
@@ -226,13 +226,13 @@ export async function getServerSideProps() {
   //temporary fix for data link problem:
   const data = require('../resource/aug_2020.json');
 
-  const array_5d = [[[[]]]]; // array of (x,y) where x is views and y is likes
+  const array_4d = [[[[]]]]; // array of (x,y) where x is views and y is likes
 
   for (let i = 0; i < data.length; i++) {
-    array_5d[i] = [data[i]["view_count"],data[i]["likes"],data[i]["video_id"],data[i]["title"]];
+    array_4d[i] = [data[i]["view_count"],data[i]["likes"],data[i]["video_id"],data[i]["title"]];
   }
 
-  return {props: {array_5d},} //returns the 2d array to the client's page
+  return {props: {array_4d},} //returns the 2d array to the client's page
 }
 
 export default PageTwo;
