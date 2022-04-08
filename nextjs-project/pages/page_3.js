@@ -34,8 +34,8 @@ function PageThree() {
       let items = json.items 
       let nextPageToken = json.nextPageToken
       // Take the first 250 comments
-      // With i >= 5, wordcloud processing takes too long
-      while (nextPageToken && i < 5) {
+      // With i >= 3, wordcloud processing takes too long
+      while (nextPageToken && i < 3) {
         response = await fetch('https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&pageToken='+nextPageToken+'&videoId='+videoId+'&key='+api_key)
         json = await response.json()
         items = items.concat(json.items)
