@@ -82,26 +82,23 @@ describe("processVideoCategories", () => {
 
 describe("processVideos", () => {
   test('Empty Object test', () => {
-    var videos = {};
+    var videos = [];
     var result = [];
     expect(tools.processVideos(videos)).toEqual(result);
   });
 
   test('Simple test', () => {
-      var videos = {
-        "items": [
+      var videos = [
           {"snippet": {"categoryId": "3", "title": "Video 1"}, 
            "statistics": {"viewCount": 1000, "likeCount": 100}
           }
-        ]
-      };
+        ];
       var result = [{"id": "3", "title": "Video 1", "viewCount": 1000, "likeCount": 100}]
       expect(tools.processVideos(videos)).toEqual(result);
   });
 
   test('Elaborate Test', () => {
-    var videos = {
-      "items": [
+    var videos = [
         {"snippet": {"categoryId": "3", "title": "Video 1"}, 
          "statistics": {"viewCount": 1000, "likeCount": 100}
         }, 
@@ -111,8 +108,7 @@ describe("processVideos", () => {
         {"snippet": {"categoryId": "2", "title": "Video 3"}, 
          "statistics": {"viewCount": 20000, "likeCount": 4556}
         }
-      ]
-    };
+      ];
     var result = [{"id": "3", "title": "Video 1", "viewCount": 1000, "likeCount": 100},
                   {"id": "0", "title": "Video 2", "viewCount": 356, "likeCount": 200},
                   {"id": "2", "title": "Video 3", "viewCount": 20000, "likeCount": 4556}]

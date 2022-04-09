@@ -28,10 +28,10 @@ function HomePage() {
       </li>
 
       <li>
-        <Link href='/page_2'>
+        <Link href='/page_2.1'>
           <button className={styles.button}>
             <span>
-              Views vs Likes (August 2020)
+              Views vs Likes Scatterplots
             </span>  
           </button>
         </Link>

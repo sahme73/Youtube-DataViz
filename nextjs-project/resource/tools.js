@@ -42,8 +42,7 @@ function processVideoCategories(categories) {
 // Partially taken from https://observablehq.com/@d3/word-cloud
 // Remove Emojis
 
-function wordCloudProcessor(json_result) {
-  let items = json_result["items"];
+function wordCloudProcessor(items) {
   var full_text = "";
   for (let index = 0; index < items.length; index++) {
     full_text = full_text + items[index]["snippet"]["topLevelComment"]["snippet"]["textOriginal"] + " ";
