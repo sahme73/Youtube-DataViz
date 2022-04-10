@@ -1,19 +1,25 @@
 // Top 100 most popular videos are extracted from the YouTube API
 // Processed to make an array of JS Objects for D3.js input
 function processVideos(videos) {
-  let temp = videos["items"];
   let final_videos = [];
 
-  if (temp == null) {
+  if (videos == null) {
     return final_videos;
   }
-  for (let index = 0; index < temp.length; index++) {
-    let curr_obj = {};
-    curr_obj["id"] = temp[index]["snippet"]["categoryId"];
-    curr_obj["title"] = temp[index]["snippet"]["title"];
-    curr_obj["viewCount"] = temp[index]["statistics"]["viewCount"];
-    curr_obj["likeCount"] = temp[index]["statistics"]["likeCount"];
-    final_videos.push(curr_obj);
+  for (let index = 0; index < videos.length; index++) {
+    try {
+      let curr_obj = {};
+      curr_obj["id"] = videos[index]["snippet"]["categoryId"];
+      curr_obj["title"] = videos[index]["snippet"]["title"];
+      curr_obj["viewCount"] = videos[index]["statistics"]["viewCount"];
+      curr_obj["likeCount"] = videos[index]["statistics"]["likeCount"];
+      if (typeof curr_obj["likeCount"] !== 'undefined' && curr_obj["viewCount"] !== 'undefined') {
+        console.log(curr_obj);
+        final_videos.push(curr_obj);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
   return final_videos;
 }

@@ -144,8 +144,23 @@ function PageFour({ final_data }) {
 }
 
 export async function getServerSideProps() {
-  const json_data = require('../resource/top_100_mostpopular.json');
-  const final_data = processVideos(json_data);
+  const api_key = process.env.YOUTUBE_KEY;
+  let response = await fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=100&regionCode=US&key='+ api_key);
+  let json = await response.json();
+  let items = json.items; 
+  let i = 0;
+  let nextPageToken = json.nextPageToken;
+  console.log(nextPageToken);
+  while (nextPageToken && i < 3) {
+    response = await fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=100&pageToken=' + nextPageToken + '&regionCode=US&key='+ api_key);
+    console.log(response);
+    json = await response.json();
+    items = items.concat(json.items);
+    nextPageToken = json.nextPageToken;
+    i+=1;
+  }
+
+  const final_data = processVideos(items);
 
   return {props:{final_data}}
 
