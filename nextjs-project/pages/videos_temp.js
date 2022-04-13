@@ -12,7 +12,7 @@ function VideosApp(){
     // const [key, setKey] = useState(null)
     // console.log(key)
     // return (<div>{key}</div>)
-    const key = 'AIzaSyC9woSZMjGt2yS_o_TlpQyIhOuNwwRxJyU'// process.env.YOUTUBE_TOKEN does not work
+    const key = process.env.YOUTUBE_KEY//'AIzaSyC9woSZMjGt2yS_o_TlpQyIhOuNwwRxJyU'// process.env.YOUTUBE_TOKEN does not work
     const videosEndpoint = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&key="
     // console.log(videosEndpoint)
     const [data, setData] = useState(null)
