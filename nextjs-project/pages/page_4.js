@@ -150,10 +150,8 @@ export async function getServerSideProps() {
   let items = json.items; 
   let i = 0;
   let nextPageToken = json.nextPageToken;
-  console.log(nextPageToken);
   while (nextPageToken && i < 3) {
     response = await fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=100&pageToken=' + nextPageToken + '&regionCode=US&key='+ api_key);
-    console.log(response);
     json = await response.json();
     items = items.concat(json.items);
     nextPageToken = json.nextPageToken;

@@ -14,7 +14,6 @@ function processVideos(videos) {
       curr_obj["viewCount"] = videos[index]["statistics"]["viewCount"];
       curr_obj["likeCount"] = videos[index]["statistics"]["likeCount"];
       if (typeof curr_obj["likeCount"] !== 'undefined' && curr_obj["viewCount"] !== 'undefined') {
-        console.log(curr_obj);
         final_videos.push(curr_obj);
       }
     } catch (error) {
