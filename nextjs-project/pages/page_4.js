@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { Fragment } from 'react';
-import { processVideos } from '../resource/tools'
+import { processVideos, processVideoCategories } from '../resource/tools'
 import * as d3 from "d3";
 import React, {useState, useRef, useEffect} from 'react';
 import styles from '../styles/DefaultPage.module.css';
 
-function PageFour({ final_data }) {
+function PageFour({ final_data, categories_json }) {
   const [data] = useState(final_data);
+  const [categories] = useState(processVideoCategories(categories_json))
   const svgRef = useRef();
 
   useEffect(() => {
@@ -116,7 +117,7 @@ function PageFour({ final_data }) {
       label: d => [d.title, d.viewCount.toLocaleString("en")].join("\n"),
       value: d => d.viewCount,
       group: d => d.id,
-      title: d => `${d.title}\nViews: ${d.viewCount.toLocaleString("en")} \nCategory: `,
+      title: d => `${d.title}\nViews: ${d.viewCount.toLocaleString("en")} \nCategory: ${categories[d.id]}`,
       width: 1152
     })
 
@@ -144,7 +145,10 @@ function PageFour({ final_data }) {
 }
 
 export async function getServerSideProps() {
+  
   const api_key = process.env.YOUTUBE_KEY;
+  let categories = await fetch('https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=US&key='+ api_key);
+  let categories_json = await categories.json();
   let response = await fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=100&regionCode=US&key='+ api_key);
   let json = await response.json();
   let items = json.items; 
@@ -160,7 +164,7 @@ export async function getServerSideProps() {
 
   const final_data = processVideos(items);
 
-  return {props:{final_data}}
+  return {props:{final_data, categories_json}}
 
 }
 
