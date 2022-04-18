@@ -4,6 +4,7 @@ import { processVideos, processVideoCategories } from '../resource/tools'
 import * as d3 from "d3";
 import React, {useState, useRef, useEffect} from 'react';
 import styles from '../styles/DefaultPage.module.css';
+import { axisLeft, leastIndex } from 'd3';
 
 function PageFour({ final_data, categories_json }) {
   const [data] = useState(final_data);
@@ -108,6 +109,16 @@ function PageFour({ final_data, categories_json }) {
             .attr("y", (d, i, D) => `${i - D.length / 2 + 0.85}em`)
             .attr("fill-opacity", (d, i, D) => i === D.length - 1 ? 0.7 : null)
             .text(d => d);
+        leaf.selectAll('circle')
+        .on("mouseover", function(event,d) {
+          console.log(d)
+          console.log(event)
+        })
+        .on("click", function(event, d) {
+          console.log(d)
+          console.log(event)
+        })
+
       }
     
       return Object.assign(svg.node(), {scales: {color}});
@@ -116,6 +127,7 @@ function PageFour({ final_data, categories_json }) {
     let chart = BubbleChart(data, {
       label: d => [d.title, d.viewCount.toLocaleString("en")].join("\n"),
       value: d => d.viewCount,
+      link: d => d.videoID,
       group: d => d.id,
       title: d => `${d.title}\nViews: ${d.viewCount.toLocaleString("en")} \nCategory: ${categories[d.id]}`,
       width: 1152
