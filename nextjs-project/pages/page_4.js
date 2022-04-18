@@ -116,7 +116,7 @@ function PageFour({ final_data }) {
       label: d => [d.title, d.viewCount.toLocaleString("en")].join("\n"),
       value: d => d.viewCount,
       group: d => d.id,
-      title: d => `${d.id}\n${d.viewCount.toLocaleString("en")}`,
+      title: d => `${d.title}\nViews: ${d.viewCount.toLocaleString("en")} \nCategory: `,
       width: 1152
     })
 
