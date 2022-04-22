@@ -16,16 +16,6 @@ function HomePage() {
     <Fragment>
       <h1 className={styles.title}>YouTube Analysis</h1>
       <ul className={styles.list}>
-        
-      <li>
-        <Link href='/page_1'>
-          <button className={styles.button}>
-            <span>
-              D3 Bar Graph Example
-            </span>  
-          </button>
-        </Link>
-      </li>
 
       <li>
         <Link href='/page_2'>
