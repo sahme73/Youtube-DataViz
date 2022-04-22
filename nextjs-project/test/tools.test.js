@@ -89,29 +89,30 @@ describe("processVideos", () => {
 
   test('Simple test', () => {
       var videos = [
-          {"snippet": {"categoryId": "3", "title": "Video 1"}, 
+          {"id": "abcd", 
+           "snippet": {"categoryId": "3", "title": "Video 1"}, 
            "statistics": {"viewCount": 1000, "likeCount": 100}
           }
         ];
-      var result = [{"id": "3", "title": "Video 1", "viewCount": 1000, "likeCount": 100}]
+      var result = [{"id": "3", "title": "Video 1", "viewCount": 1000, "likeCount": 100, "videoID":"https://youtu.be/watch?v=abcd"}]
       expect(tools.processVideos(videos)).toEqual(result);
   });
 
   test('Elaborate Test', () => {
     var videos = [
-        {"snippet": {"categoryId": "3", "title": "Video 1"}, 
+        {"id": "abcd", "snippet": {"categoryId": "3", "title": "Video 1"}, 
          "statistics": {"viewCount": 1000, "likeCount": 100}
         }, 
-        {"snippet": {"categoryId": "0", "title": "Video 2"}, 
+        {"id": "efgh", "snippet": {"categoryId": "0", "title": "Video 2"}, 
          "statistics": {"viewCount": 356, "likeCount": 200}
         }, 
-        {"snippet": {"categoryId": "2", "title": "Video 3"}, 
+        {"id": "ijkl", "snippet": {"categoryId": "2", "title": "Video 3"}, 
          "statistics": {"viewCount": 20000, "likeCount": 4556}
         }
       ];
-    var result = [{"id": "3", "title": "Video 1", "viewCount": 1000, "likeCount": 100},
-                  {"id": "0", "title": "Video 2", "viewCount": 356, "likeCount": 200},
-                  {"id": "2", "title": "Video 3", "viewCount": 20000, "likeCount": 4556}]
+    var result = [{"id": "3", "title": "Video 1", "viewCount": 1000, "likeCount": 100, "videoID":"https://youtu.be/watch?v=abcd"},
+                  {"id": "0", "title": "Video 2", "viewCount": 356, "likeCount": 200, "videoID":"https://youtu.be/watch?v=efgh"},
+                  {"id": "2", "title": "Video 3", "viewCount": 20000, "likeCount": 4556, "videoID":"https://youtu.be/watch?v=ijkl"}]
     expect(tools.processVideos(videos)).toEqual(result);
   });
 })

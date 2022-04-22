@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import { Fragment } from 'react';
-import { processVideos } from '../resource/tools'
+import { processVideos, processVideoCategories } from '../resource/tools'
 import * as d3 from "d3";
 import React, {useState, useRef, useEffect} from 'react';
 import styles from '../styles/DefaultPage.module.css';
+import { axisLeft, leastIndex } from 'd3';
 
-function PageFour({ final_data }) {
+function PageFour({ final_data, categories_json }) {
   const [data] = useState(final_data);
+  const [categories] = useState(processVideoCategories(categories_json))
   const svgRef = useRef();
 
   useEffect(() => {
@@ -97,7 +99,7 @@ function PageFour({ final_data }) {
             .attr("id", d => `${uid}-clip-${d.data}`)
           .append("circle")
             .attr("r", d => d.r);
-    
+             
         leaf.append("text")
             .attr("clip-path", d => `url(${new URL(`#${uid}-clip-${d.data}`, location)})`)
           .selectAll("tspan")
@@ -107,6 +109,38 @@ function PageFour({ final_data }) {
             .attr("y", (d, i, D) => `${i - D.length / 2 + 0.85}em`)
             .attr("fill-opacity", (d, i, D) => i === D.length - 1 ? 0.7 : null)
             .text(d => d);
+        var tooltip = d3.select(svgRef.current)
+          .append("div")
+            .style("opacity", 0)
+            .attr("class", "tooltip")
+            .style("background-color", "black")
+            .style("border-radius", "5px")
+            .style("padding", "10px")
+            .style("color", "white")
+        // leaf.selectAll('circle')
+        // .on("mouseover", function(event,d) {
+        //   // console.log(d)
+        //   tooltip
+        //   .transition()
+        //   .duration(200)
+        //   tooltip
+        //   .style("opacity", 1)
+        //   .html(D[d.data].title)
+        //   .style("left", (d.x+30) + "px")
+        //   .style("top", (d.y+30) + "px")
+        // })
+        // .on("mousemove", function(event,d) {
+        //   tooltip
+        //   .style("left", (d.x+30) + "px")
+        //   .style("top", (d.y+30) + "px")
+        // })
+        // .on("mouseleave", function(event,d) {
+        //   tooltip
+        //   .transition()
+        //   .duration(200)
+        //   .style("opacity", 0)
+        // })
+
       }
     
       return Object.assign(svg.node(), {scales: {color}});
@@ -115,8 +149,9 @@ function PageFour({ final_data }) {
     let chart = BubbleChart(data, {
       label: d => [d.title, d.viewCount.toLocaleString("en")].join("\n"),
       value: d => d.viewCount,
+      link: d => d.videoID,
       group: d => d.id,
-      title: d => `${d.id}\n${d.viewCount.toLocaleString("en")}`,
+      title: d => `${d.title}\nViews: ${d.viewCount.toLocaleString("en")} \nCategory: ${categories[d.id]}`,
       width: 1152
     })
 
@@ -144,7 +179,10 @@ function PageFour({ final_data }) {
 }
 
 export async function getServerSideProps() {
+  
   const api_key = process.env.YOUTUBE_KEY;
+  let categories = await fetch('https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=US&key='+ api_key);
+  let categories_json = await categories.json();
   let response = await fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=100&regionCode=US&key='+ api_key);
   let json = await response.json();
   let items = json.items; 
@@ -160,7 +198,7 @@ export async function getServerSideProps() {
 
   const final_data = processVideos(items);
 
-  return {props:{final_data}}
+  return {props:{final_data, categories_json}}
 
 }
 

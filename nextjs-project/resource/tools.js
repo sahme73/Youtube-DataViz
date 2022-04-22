@@ -10,6 +10,7 @@ function processVideos(videos) {
     try {
       let curr_obj = {};
       curr_obj["id"] = videos[index]["snippet"]["categoryId"];
+      curr_obj["videoID"] = "https://youtu.be/watch?v=" + videos[index]["id"]
       curr_obj["title"] = videos[index]["snippet"]["title"];
       curr_obj["viewCount"] = videos[index]["statistics"]["viewCount"];
       curr_obj["likeCount"] = videos[index]["statistics"]["likeCount"];
