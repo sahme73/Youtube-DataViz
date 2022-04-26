@@ -56,7 +56,7 @@ yarn dev
 
 3.) Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. You will see the below home page:
 
-![](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/Home%20Screen.png)
+![Home Page](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/Home%20Screen.png)
 
 4.) There are 3 different visualizations that you can use. Views vs Likes Scatterplot, Word Cloud & Bubble Chart.
 
