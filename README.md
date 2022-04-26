@@ -64,7 +64,7 @@ For the Word Cloud visualization that visualizes common words and performs a sen
 
 ![Word Cloud](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/Word%20Cloud.png)
 
-You may obtain a video id by going to looking at a YouTube Video's URL. Below is an example of a video id format:
+You may obtain a video id by going to looking at a YouTube Video's URL. Below is an example of a video id format and how you can obtain it from a YouTube URL:
 
 ```bash
 https://www.youtube.com/watch?v=<video id>
