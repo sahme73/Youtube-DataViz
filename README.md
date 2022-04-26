@@ -35,7 +35,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Group Members and Roles:
 
-1.) Safeer Ahmed - 
+1.) Safeer Ahmed - asdadsad
 2.) Yi Shian Ho - Bubble chart & Sentiment Analysis Data Visualizations
-3.) Sam Zhang - 
-4.) Yun Wang - 
+3.) Sam Zhang - sdasda
+4.) Yun Wang - asdasd
