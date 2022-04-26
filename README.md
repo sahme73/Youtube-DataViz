@@ -32,7 +32,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 2.) Obtain your API Key by clicking on the "Copy Button" as seen in the red box below
 
-
+![Obtain API Key](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/API%20Key%20Example.png)
 
 3.) Create a file called `env.development.local`
 
