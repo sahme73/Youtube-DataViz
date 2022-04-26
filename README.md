@@ -1,4 +1,4 @@
-# Project Name: YouTube Viz
+# YouTube Viz
 
 ## Summary of Project
 In our project, we set out to work with YouTube Data and try to visualize the data from videos in meaningful ways. We do so through 3 different types of visualizations.
