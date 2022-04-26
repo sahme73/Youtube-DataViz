@@ -3,7 +3,7 @@
 ## Summary of Project
 In our project, we set out to work with YouTube Data and try to visualize the data from videos in meaningful ways. We do so through 3 different types of visualizations.
 
-1.) Visualize Likes vs Views of a given set of videos over a 12 month period
+1.) Visualize Likes vs Views of a given set of videos over a 12 month period through a scatterplot
 
 2.) Perform Sentiment Analysis through the use of Word Cloud on comments of a given YouTube Video
 
@@ -11,6 +11,20 @@ In our project, we set out to work with YouTube Data and try to visualize the da
 
 Unlike other Data Visualization projects out there, our team hoped to make our data visualization as dynamic as possible. Our visualization would pull from the YouTube API in real time rather than create a single image visualization (a snapshot in time) which most projects do. 
 ## Technical Architecture
+
+Our web application works with the Next.js framework. It can be divided into 2 parts, Frontend and Backend. The 3 different data visualizations utilize slightly different Backend structure depending on the data visualization due to the different needs/ size of data that each visualization is working with. 
+
+For the Likes vs Views Scatterplot, below is the architecture that it uses
+
+<Architecture Insert here>
+
+For the Bubble chart (Trending videos) and Word Cloud (Sentiment Analysis), below is the architecture it uses:
+
+![Architecture 2](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/TechnicalArchitecture2.png)
+
+It is worth noting the differences between the Backend set-up between the 2 sets of data visualization. For the bubble chart and word cloud, they utilize data provided from the YouTube API while the scatterplot uses data given directly from a json file, that was not taken from Kaggle (due to the size of the file itself). This difference is largely due to the availability of the given data. Data used for the scatterplot required data to be given by Month which is not available from the YouTube API.
+
+Overall, the Frontend set-up was largely the same with React.js as the framework used on top of the D3.js Library which was used for the visualization.
 
 ## Installation Instructions
 
