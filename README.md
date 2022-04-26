@@ -26,9 +26,21 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 4.) Run the command: "npm install" (this command will install all necessary dependencies for the project)
 
-5.) Finally, you should be able to run the command: "npm run dev" (example below) to locally host the current webpage
+### Getting your YouTube API Key
 
-First, run the development server:
+1.) Follow the instructions found here (https://developers.google.com/youtube/v3/getting-started)
+
+2.) Obtain your API Key by clicking on the "Copy Button" as seen in the red box below
+
+
+
+3.) Create a file called `env.development.local`
+
+### Instruction for using Data Visualizations
+
+1.) First, you should be able to run the command: "npm run dev" (example below) to locally host the current webpage
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -36,9 +48,7 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-### Instruction for using Data Visualizations
+2.) Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Group Members and Roles:
 
