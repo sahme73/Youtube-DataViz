@@ -34,11 +34,17 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ![Obtain API Key](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/API%20Key%20Example.png)
 
-3.) Create a file called `env.development.local`
+3.) Create a file called `env.development.local` in the `nextjs-project` folder and add the following code inside `env.development.local`:
+
+```bash
+YOUTUBE_KEY=<YOUR API KEY>
+```
 
 ### Instruction for using Data Visualizations
 
-1.) First, you should be able to run the command: "npm run dev" (example below) to locally host the current webpage
+1.) First, ensure that you complete the above instructions for [obtaining your YouTube API Key](#getting-your-youtube-api-key). If not, the following steps will crash the web application.
+
+2.) Second, you should be able to run the command: "npm run dev" (example below) to locally host the current webpage
 
 Run the development server:
 
@@ -48,7 +54,11 @@ npm run dev
 yarn dev
 ```
 
-2.) Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3.) Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. You will see the below home page:
+
+![](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/Home%20Screen.png)
+
+4.) There are 3 different visualizations that you can use. Views vs Likes Scatterplot, Word Cloud & Bubble Chart.
 
 ## Group Members and Roles:
 
