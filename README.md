@@ -58,7 +58,17 @@ yarn dev
 
 ![Home Page](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/Home%20Screen.png)
 
-4.) There are 3 different visualizations that you can use. Views vs Likes Scatterplot, Word Cloud & Bubble Chart.
+4.) There are 3 different visualizations that you can use. Views vs Likes Scatterplot, Word Cloud & Bubble Chart. 
+
+For the Word Cloud visualization that visualizes common words and performs a sentiment analysis on a given video, the web application accepts a given video id for a video on YouTube and visualizes common words. Enter the Video ID in the input field (in red box):
+
+![Word Cloud](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/Word%20Cloud.png)
+
+You may obtain a video id by going to looking at a YouTube Video's URL. Below is an example of a video id format:
+
+```bash
+https://www.youtube.com/watch?v=<video id>
+```
 
 ## Group Members and Roles:
 
