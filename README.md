@@ -1,8 +1,15 @@
 # Project Name: YouTube Viz
 
 ## Summary of Project
-In our project, we set out to work with YouTube Data and try to visualize the data from videos in meaningful ways. We do so through 3 different types of visualizations. 
+In our project, we set out to work with YouTube Data and try to visualize the data from videos in meaningful ways. We do so through 3 different types of visualizations.
 
+1.) Visualize Likes vs Views of a given set of videos over a 12 month period
+
+2.) Perform Sentiment Analysis through the use of Word Cloud on comments of a given YouTube Video
+
+3.) Visualize trending videos based on their categories and their respective view/ like count using a Bubble Chart
+
+Unlike other Data Visualization projects out there, our team hoped to make our data visualization as dynamic as possible. Our visualization would pull from the YouTube API in real time rather than create a single image visualization (a snapshot in time) which most projects do. 
 ## Technical Architecture
 
 ## Installation Instructions
