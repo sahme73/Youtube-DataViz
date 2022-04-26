@@ -33,7 +33,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Instruction for using Data Visualizations
 
-## Group Members and Roles
+## Group Members and Roles:
+
 1.) Safeer Ahmed - 
 2.) Yi Shian Ho - Bubble chart & Sentiment Analysis Data Visualizations
 3.) Sam Zhang - 
