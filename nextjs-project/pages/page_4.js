@@ -117,30 +117,6 @@ function PageFour({ final_data, categories_json }) {
             .style("border-radius", "5px")
             .style("padding", "10px")
             .style("color", "white")
-        // leaf.selectAll('circle')
-        // .on("mouseover", function(event,d) {
-        //   // console.log(d)
-        //   tooltip
-        //   .transition()
-        //   .duration(200)
-        //   tooltip
-        //   .style("opacity", 1)
-        //   .html(D[d.data].title)
-        //   .style("left", (d.x+30) + "px")
-        //   .style("top", (d.y+30) + "px")
-        // })
-        // .on("mousemove", function(event,d) {
-        //   tooltip
-        //   .style("left", (d.x+30) + "px")
-        //   .style("top", (d.y+30) + "px")
-        // })
-        // .on("mouseleave", function(event,d) {
-        //   tooltip
-        //   .transition()
-        //   .duration(200)
-        //   .style("opacity", 0)
-        // })
-
       }
     
       return Object.assign(svg.node(), {scales: {color}});
