@@ -16,7 +16,9 @@ Our web application works with the Next.js framework. It can be divided into 2 p
 
 For the Likes vs Views Scatterplot, below is the architecture that it uses
 
-<Architecture Insert here>
+![Architecture 1](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/Architecture1.png)
+
+For the Scatter Plot Visualization, data was stored on Firebase cloud storage. It was then fetched and parsed from Firebase on the server running Node.js. Finally, data is then passed into function for visualization using D3.js.
 
 For the Bubble chart (Trending videos) and Word Cloud (Sentiment Analysis), below is the architecture it uses:
 
