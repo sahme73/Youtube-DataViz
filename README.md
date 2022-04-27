@@ -86,7 +86,7 @@ https://www.youtube.com/watch?v=<video id>
 
 ## Group Members and Roles:
 
-1.) Safeer Ahmed - 
+1.) Safeer Ahmed - Views vs Likes Scatter Plot Visualization & CSS Designer
 
 2.) Yi Shian Ho - Bubble chart & Sentiment Analysis Data Visualizations
 
