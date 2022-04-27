@@ -90,6 +90,6 @@ https://www.youtube.com/watch?v=<video id>
 
 2.) Yi Shian Ho - Bubble chart & Sentiment Analysis Data Visualizations
 
-3.) Sam Zhang - 
+3.) Sam Zhang - Most popular videos and comment threads fetcher based on YouTube API
 
 4.) Yun Wang - 
