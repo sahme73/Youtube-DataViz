@@ -253,7 +253,7 @@ function PageTwo({ output_data, plotname, }) {
 
   return (
     <Fragment>
-      <h1 className={styles.title}>Page 2 : Views vs Likes {plotname}</h1>
+      <h1 className={styles.title}>Page 2 : Likes vs Views {plotname}</h1>
         <Link href='/'>
           <button className={styles.button}>
             <span>

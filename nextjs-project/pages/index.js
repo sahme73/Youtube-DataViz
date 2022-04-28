@@ -21,7 +21,7 @@ function HomePage() {
         <Link href='/page_2'>
           <button className={styles.button}>
             <span>
-              Views vs Likes Scatterplots
+              Likes vs Views Scatterplots
             </span>  
           </button>
         </Link>
