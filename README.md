@@ -94,4 +94,4 @@ https://www.youtube.com/watch?v=<video id>
 
 3.) Sam Zhang - Most popular videos and comment threads fetcher based on YouTube API
 
-4.) Yun Wang - 
+4.) Yun Wang - Assisted in creating node.js code for data fetchers with Sam
