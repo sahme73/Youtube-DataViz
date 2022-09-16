@@ -1,5 +1,8 @@
 # YouTube Viz
 
+## Video Presentation
+https://mediaspace.illinois.edu/media/t/1_9yomlqdw
+
 ## Summary of Project
 In our project, we set out to work with YouTube Data and try to visualize the data from videos in meaningful ways. We do so through 3 different types of visualizations.
 
