@@ -1,4 +1,4 @@
-# YouTube Viz
+# YouTube DataViz
 
 ## Video Presentation
 https://mediaspace.illinois.edu/media/t/1_9yomlqdw
