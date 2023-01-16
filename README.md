@@ -1,5 +1,16 @@
 # YouTube DataViz
 
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#video-presentation">Presentation</a></li>
+    <li><a href="#summary-of-project">Summary</a></li>
+    <li><a href="#technical-architecture">Technical Architecture</a></li>
+    <li><a href="#installation-instructions">Installation</a></li>
+    <li><a href="#group-members-and-roles">Contributors</a></li>
+  </ol>
+</details>
+
 ## Video Presentation
 https://mediaspace.illinois.edu/media/t/1_9yomlqdw
 
@@ -104,7 +115,7 @@ https://www.youtube.com/watch?v=<video id>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Group Members and Roles:
+## Group Members and Roles
 
 1.) Safeer Ahmed - Views vs Likes Scatter Plot Visualization & CSS Designer
 
