@@ -1,4 +1,20 @@
-# YouTube Viz
+# YouTube DataViz
+
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#video-presentation">Presentation</a></li>
+    <li><a href="#summary-of-project">Summary</a></li>
+    <li><a href="#technical-architecture">Technical Architecture</a></li>
+    <li><a href="#installation-instructions">Installation</a></li>
+    <li><a href="#group-members-and-roles">Contributors</a></li>
+  </ol>
+</details>
+
+## Video Presentation
+https://mediaspace.illinois.edu/media/t/1_9yomlqdw
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Summary of Project
 In our project, we set out to work with YouTube Data and try to visualize the data from videos in meaningful ways. We do so through 3 different types of visualizations.
@@ -10,6 +26,9 @@ In our project, we set out to work with YouTube Data and try to visualize the da
 3.) Visualize trending videos based on their categories and their respective view/ like count using a Bubble Chart
 
 Unlike other Data Visualization projects out there, our team hoped to make our data visualization as dynamic as possible. Our visualization would pull from the YouTube API in real time rather than create a single image visualization (a snapshot in time) which most projects do. 
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## Technical Architecture
 
 Our web application works with the Next.js framework. It can be divided into 2 parts, Frontend and Backend. The 3 different data visualizations utilize slightly different Backend structure depending on the data visualization due to the different needs/ size of data that each visualization is working with. 
@@ -28,9 +47,13 @@ It is worth noting the differences between the Backend set-up between the 2 sets
 
 Overall, the Frontend set-up was largely the same with React.js as the framework used on top of the D3.js Library which was used for the visualization.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## Installation Instructions
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Getting Started (For Developers):
 
@@ -41,6 +64,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 3.) Using any command line (Powershell, CMD, etc.) CD to the "nextjs-project" folder
 
 4.) Run the command: "npm install" (this command will install all necessary dependencies for the project)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Getting your YouTube API Key
 
@@ -55,6 +80,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ```bash
 YOUTUBE_KEY=<YOUR API KEY>
 ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Instruction for using Data Visualizations
 
@@ -86,7 +113,9 @@ You may obtain a video id by going to looking at a YouTube Video's URL. Below is
 https://www.youtube.com/watch?v=<video id>
 ```
 
-## Group Members and Roles:
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Group Members and Roles
 
 1.) Safeer Ahmed - Views vs Likes Scatter Plot Visualization & CSS Designer
 
@@ -94,4 +123,6 @@ https://www.youtube.com/watch?v=<video id>
 
 3.) Sam Zhang - Most popular videos and comment threads fetcher based on YouTube API
 
-4.) Yun Wang - 
+4.) Yun Wang - Assisted in creating node.js code for data fetchers with Sam
+
+<p align="right">(<a href="#top">back to top</a>)</p>
