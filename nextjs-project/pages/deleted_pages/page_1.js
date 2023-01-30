@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import * as d3 from "d3";
 import { Fragment } from 'react';
 import Link from 'next/link';
-import styles from '../styles/DefaultPage.module.css';
+import styles from '../../styles/DefaultPage.module.css';
 
 class BarChart extends Component {
   componentDidMount() {

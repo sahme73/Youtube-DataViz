@@ -1,3 +1,4 @@
+/*
 import jsCookie from 'js-cookie';
 import { Fragment } from 'react';
 import useSWR from 'swr'
@@ -109,3 +110,10 @@ function PageTemp() {
 }
 
 export default PageTemp;
+*/
+
+function PageTemp() {
+  return <div>Blank</div>
+}
+
+export default PageTemp

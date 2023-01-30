@@ -12,7 +12,7 @@ const getVideos = async () => {
 }
 
 // function that returns top 50 most popular videos
-function getMostPopularVideos(){
+function GetMostPopularVideos(){
 
     // useSWR hook to fetch data
     const {data: videos, error } = useSWR(videosEndpoint+key, getVideos)
@@ -29,4 +29,4 @@ function getMostPopularVideos(){
     // return data.items;
 };
 
-export default getMostPopularVideos;
+export default GetMostPopularVideos;

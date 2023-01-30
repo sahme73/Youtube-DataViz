@@ -358,11 +358,11 @@ function PageTwo({ output_data, plotname, }) {
 
       <br></br>
 
-        <button className={styles.button} onClick={() => {window.open("/page_raw_data", "_blank");}}>
+        {/*<button className={styles.button} onClick={() => {window.open("/page_raw_data", "_blank");}}>
             <span>
                 Raw Data
             </span>
-        </button>
+        </button>*/}
 
       <br></br><br></br><br></br>
     </Fragment>

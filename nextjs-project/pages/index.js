@@ -18,7 +18,7 @@ function HomePage() {
       <ul className={styles.list}>
 
       <li>
-        <Link href='/page_2'>
+        <Link href='/page_2' passHref>
           <button className={styles.button}>
             <span>
               Likes vs Views Scatterplots
@@ -28,7 +28,7 @@ function HomePage() {
       </li>
 
       <li>
-        <Link href='/page_3'>
+        <Link href='/page_3' passHref>
           <button className={styles.button}>
             <span>
               Word Cloud
@@ -38,7 +38,7 @@ function HomePage() {
       </li>
 
       <li>
-        <Link href='/page_4'>
+        <Link href='/page_4' passHref>
           <button className={styles.button}>
             <span>
               Bubble Chart

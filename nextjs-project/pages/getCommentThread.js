@@ -12,7 +12,7 @@ const getComments = async (videoId) => {
 }
 
 // function that returns top 50 most popular videos
-function getCommentThread(videoId = 'O0gbfvJDsv4'){
+function GetCommentThread(videoId = 'O0gbfvJDsv4'){
     //parse url
     const url = commentsEndpoint+videoId+'&key='+key
     // useSWR hook to fetch data
@@ -30,4 +30,4 @@ function getCommentThread(videoId = 'O0gbfvJDsv4'){
     // return data.items;
 };
 
-export default getCommentThread;
+export default GetCommentThread;

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 import * as d3 from 'd3';
 import React, {useState, useRef, useEffect} from 'react';
-import styles from '../styles/DefaultPage.module.css';
+import styles from '../../styles/DefaultPage.module.css';
 import { useRouter } from 'next/router';
 
 function PageTwo({ array_4d }) {
