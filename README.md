@@ -1,5 +1,7 @@
 # YouTube DataViz
 
+Beta Release: <a href="">https://youtube-dataviz.vercel.app/</a>
+
 <details>
   <summary>Table of Contents</summary>
   <ol>
