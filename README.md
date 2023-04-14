@@ -1,6 +1,6 @@
 # YouTube DataViz
 
-Beta Release: <a href="">https://youtube-dataviz.vercel.app/</a>
+Alpha Release Demo: <a href="">https://youtube-dataviz.vercel.app/</a>
 
 <details>
   <summary>Table of Contents</summary>
@@ -37,13 +37,13 @@ Our web application works with the Next.js framework. It can be divided into 2 p
 
 For the Likes vs Views Scatterplot, below is the architecture that it uses
 
-![Architecture 1](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/Architecture1.png)
+![Architecture 1](https://github.com/sahme73/Youtube-DataViz/blob/44895f6cdc2eb6d3a1a840403a324431e4384024/nextjs-project/Architecture1.png)
 
 For the Scatter Plot Visualization, data was stored on Firebase cloud storage. It was then fetched and parsed from Firebase on the server running Node.js. Finally, data is then passed into function for visualization using D3.js.
 
 For the Bubble chart (Trending videos) and Word Cloud (Sentiment Analysis), below is the architecture it uses:
 
-![Architecture 2](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/TechnicalArchitecture2.png)
+![Architecture 2](https://github.com/sahme73/Youtube-DataViz/blob/44895f6cdc2eb6d3a1a840403a324431e4384024/nextjs-project/TechnicalArchitecture2.png)
 
 It is worth noting the differences between the Backend set-up between the 2 sets of data visualization. For the bubble chart and word cloud, they utilize data provided from the YouTube API while the scatterplot uses data given directly from a json file, that was not taken from Kaggle (due to the size of the file itself). This difference is largely due to the availability of the given data. Data used for the scatterplot required data to be given by Month which is not available from the YouTube API.
 
@@ -75,7 +75,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 2.) Obtain your API Key by clicking on the "Copy Button" as seen in the red box below
 
-![Obtain API Key](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/API%20Key%20Example.png)
+![Obtain API Key](https://github.com/sahme73/Youtube-DataViz/blob/44895f6cdc2eb6d3a1a840403a324431e4384024/nextjs-project/API%20Key%20Example.png)
 
 3.) Create a file called `env.development.local` in the `nextjs-project` folder and add the following code inside `env.development.local`:
 
@@ -101,13 +101,13 @@ yarn dev
 
 3.) Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. You will see the below home page:
 
-![Home Page](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/Home%20Screen.png)
+![Home Page](https://github.com/sahme73/Youtube-DataViz/blob/44895f6cdc2eb6d3a1a840403a324431e4384024/nextjs-project/Home%20Screen.png)
 
 4.) There are 3 different visualizations that you can use. Views vs Likes Scatterplot, Word Cloud & Bubble Chart. 
 
 For the Word Cloud visualization that visualizes common words and performs a sentiment analysis on a given video, the web application accepts a given video id for a video on YouTube and visualizes common words. Enter the Video ID in the input field (in red box):
 
-![Word Cloud](https://github.com/CS222SP22/course-project-lk/blob/main/nextjs-project/Word%20Cloud.png)
+![Word Cloud](https://github.com/sahme73/Youtube-DataViz/blob/44895f6cdc2eb6d3a1a840403a324431e4384024/nextjs-project/Word%20Cloud.png)
 
 You may obtain a video id by going to looking at a YouTube Video's URL. Below is an example of a video id format and how you can obtain it from a YouTube URL:
 
